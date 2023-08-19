@@ -101,8 +101,10 @@ transform: scale(1.05);
 }
 
 main p {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   line-height: 2.0rem;
+  margin-left:0.5rem;
+  margin-right:0.5rem;
 }
 
 main h2,h1 {
@@ -126,6 +128,12 @@ main h2,h1 {
 }
 
 .paragraph {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   line-height: 2.0rem;
+  margin-left:0.5rem;
+  margin-right:0.5rem;
 }
+
+
+
+

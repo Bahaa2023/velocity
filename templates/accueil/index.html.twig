@@ -43,7 +43,7 @@
 
     <section>
       {% if not is_granted('ROLE_USER') %}
-        <h1>Bienvenue chez Vélocity</h1>
+        <h1 class="fw-bold mb-4">Bienvenue chez Vélocity</h1>
       {% endif %}
       <p class="paragraph mb-0">
         Bienvenue dans notre entreprise de vélos électriques spécialisé pour les femmes et les hommes à Paris ! Nous sommes ravis de vous accueillir et de vous offrir une expérience de cyclisme électrique de qualité. Que vous soyez un cycliste urbain chevronné ou que vous cherchiez simplement à vous déplacer rapidement et facilement dans la ville, nos vélos électriques sont conçus pour répondre à vos besoins.<br>
@@ -58,27 +58,14 @@
           <div class="col-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="2500">
             <img src="{{ asset('images/velos/vélohomme.jpg') }}" id="portrait" class="w-100 h-auto rounded-5" alt="un homme sur un vélo">
           </div>
-          {# <h2 class="fw-bold mb-0 mt-0">Notre mission et nos valeurs</h2>    #}
-
-<section>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h2 class="fw-bold mb-0 mt-0 d-none d-sm-block">Notre mission et nos valeurs</h2>
-        <h2 class="fw-bold mb-0 mt-0 d-block d-sm-none" data-aos="fade-down" data-aos-duration="90000">Notre mission et nos valeurs</h2>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
+          <h2 class=" fw-bold mb-0 mt-0">Notre mission et nos valeurs</h2>     
         </div>
       </section>
-      <p class="paragraph">
+    
+      <p class="paragraph mt-0">
         Notre mission est d'encourager les gens à utiliser des vélos électriques pour se rendre au travail et pour leurs déplacements quotidiens en ville, en évitant les embouteillages, en préservant l'environnement et en économisant de l'argent. Nous offrons également des services de réparation et d'entretien pour aider les propriétaires de vélos électriques à maintenir leurs vélos en bon état de fonctionnement.<br>
         Nous sommes fiers de notre service clientèle de qualité supérieure, notre personnel compétent est à l'écoute des besoins et des préoccupations de nos clients. Nous croyons que les vélos électriques sont une solution de mobilité pratique et efficace pour les citadins. Avec une assistance électrique, les cyclistes peuvent facilement parcourir de plus longues distances et gravir des pentes plus raides, tout en réduisant leur empreinte carbone et en économisant sur les coûts de carburant.
-      </p> 
+      </p>  
     </section>
   </main>
 {% endblock %}
