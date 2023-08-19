@@ -21,37 +21,28 @@ class ContactController extends AbstractController
      */
     public function contact(ManagerRegistry $doctrine, Request $request, MailerInterface $mailer)
     {
-        $contact=new Contact;
-        $form =$this->createForm(ContactType::class, $contact);
-        $form->handleRequest($request);  
-if($form->isSubmitted() && $form->isValid())
-{
-    $entityManager = $doctrine->getManager();
-    $entityManager->persist($contact);
-    $entityManager->flush();
-    $email = (new TemplatedEmail())
-    ->from($contact->geteMail())
-    ->to('ryan@example.com')
-    ->subject('Demande de contact!')
-    ->htmlTemplate('contact/email.html.twig')
-   ->context([
-    "contact" => $contact
-      ]);
-    $mailer->send($email);
-     $this->addFlash('contact_success', "Le mail a bien été envoyer, on revient vers vous dans le plus brief delai !");
-     // note: below the code ( return $this->redirectToRoute('page_contact');) we can décomment it incase i dont need the formulaire de contact to empty after sending the message.
-     return $this->redirectToRoute('page_contact');
-   
-}
-           return $this->render('contact/index.html.twig', [
-            "form"=>$form->createView()
+        $contact = new Contact;
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($contact);
+            $entityManager->flush();
+            $email = (new TemplatedEmail())
+                ->from($contact->geteMail())
+                ->to('admin@velos-city.fr')
+                ->subject('Demande de contact!')
+                ->htmlTemplate('contact/email.html.twig')
+                ->context([
+                    "contact" => $contact
+                ]);
+            $mailer->send($email);
+            $this->addFlash('contact_success', "Le mail a bien été envoyer, on revient vers vous dans le plus brief delai !");
+            // note: below the code ( return $this->redirectToRoute('page_contact');) we can décomment it incase i dont need the formulaire de contact to empty after sending the message.
+            return $this->redirectToRoute('page_contact');
+        }
+        return $this->render('contact/index.html.twig', [
+            "form" => $form->createView()
         ]);
-    }    
-     
+    }
 }
-
-            
-        
-
-
-           
