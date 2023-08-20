@@ -5,7 +5,7 @@
 
 {% block body %}
   {% if is_granted('ROLE_USER') %}
-    <h1>Bienvenue {{ app.user.prenom|upper }}, ravi de vous revoir !</h1>
+    <h1>Bienvenue {{ app.user.prenom|capitalize}}, ravi de vous revoir !</h1>
   {% endif %}
 
   <main>
@@ -43,7 +43,7 @@
 
     <section>
       {% if not is_granted('ROLE_USER') %}
-        <h1 class="fw-bold mb-4">Bienvenue chez Vélocity</h1>
+        <h1 class="mb-2">Bienvenue chez Vélocity</h1>
       {% endif %}
       <p class="paragraph mb-0">
         Bienvenue dans notre entreprise de vélos électriques spécialisé pour les femmes et les hommes à Paris ! Nous sommes ravis de vous accueillir et de vous offrir une expérience de cyclisme électrique de qualité. Que vous soyez un cycliste urbain chevronné ou que vous cherchiez simplement à vous déplacer rapidement et facilement dans la ville, nos vélos électriques sont conçus pour répondre à vos besoins.<br>
@@ -58,7 +58,7 @@
           <div class="col-6 d-none d-lg-block" data-aos="fade-left" data-aos-duration="2500">
             <img src="{{ asset('images/velos/vélohomme.jpg') }}" id="portrait" class="w-100 h-auto rounded-5" alt="un homme sur un vélo">
           </div>
-          <h2 class=" fw-bold mb-0 mt-0">Notre mission et nos valeurs</h2>     
+          <h2 class="mb-0 mt-0">Notre mission et nos valeurs</h2>  
         </div>
       </section>
     
