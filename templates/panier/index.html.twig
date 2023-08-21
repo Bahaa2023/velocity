@@ -2,17 +2,14 @@
 {% block title %}Hello PanierController!{% endblock %}
 {% block body %}
 <div class="container mt-4 min-content">
-{% if items is empty %}
+ {% if items is empty %}
 <div class="empty-basket-message text-center">
     <h1>Votre panier est vide !!<h1>
     <img src="{{ asset('images/velos/paniervide.jpg') }}" alt="Empty Basket">
     <div class="d-flex justify-content-center">
         <a href="{{ path('page_gallerie', {id: 1}) }}" class="btn btn-warning mt-0" style="padding: 10px 30px;">Continuez vos achats</a>
     </div> 
-  
-
 </div>
-
 {% else %} 
 <h1>Vos Achats</h1>
     <div class="table-responsive">
@@ -54,18 +51,24 @@
                 {% endfor %}
             </tbody>
         </table>
-    </div>
+    </div> 
     <div class="text-center mt-3">
+    <a href="{{ path('page_gallerie', {id: 1})}}" class="btn btn-warning px-4 mb-2"> Continuez vos achats</a> 
         <form action="/checkout" method="POST">
-            <button type="submit" class="btn btn-primary mb-5 px-4">PAYER <strong>{{ total }}€</strong></button>
-
+            <button type="submit" class="btn btn-primary mb-5 px-4">Total à payer <strong>{{ total }}€</strong></button>
         </form>
     </div>
-<div class="d-flex justify-content-center">
+<div class="d-none d-sm-flex justify-content-center">
     <img src="{{ asset('images/velos/paiementsecurise.jpg') }}" alt="Payment Security">
-</div> 
+</div>
+<div class="d-flex justify-content-center d-sm-none">
+    <img src="{{ asset('images/velos/paiementsecurise1.jpg') }}" alt="Payment Security 1">
+</div>
 
-    {% endif %}
+
+    {% endif %} 
+
+
 </div>
 {% endblock %}
 
