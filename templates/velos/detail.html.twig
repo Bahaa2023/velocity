@@ -1,11 +1,11 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}Détails de vélo{% endblock %}
 
 
 
 {% block body %}
-      {# <section class="container-fluid p-4" id="apropos">
+       <section class="container-fluid p-4" id="apropos">
         <div class="row text-center">
           <div class="col-12 p-2 col-md-7 col-lg-7 col-xl-7"  data-aos="fade-right" data-aos-duration="1800">
           <img src="{{vich_uploader_asset(velo, 'imageFile')}}" alt="vélo" id="portrait" class="w-100">     
@@ -17,7 +17,7 @@
             <a href="{{ path ('panier_add', {id: velo.id})}}" class="btn btn-primary mb-0">AJOUTER AU PANIER</a>
           </div> 
         </div>
-      </section> #}
+      </section> 
       <section class="container-fluid p-4" id="apropos">
     <div class="row text-center">
         <div class="col-12 p-2 col-md-7 col-lg-7 col-xl-7" data-aos="fade-right" data-aos-duration="1800">
@@ -89,4 +89,4 @@
   });  
 </script>
 {% endblock %}
-
+ 

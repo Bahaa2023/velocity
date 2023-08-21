@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+ {% extends 'base.html.twig' %}
 
 {% block title %}formulaire{% endblock %}
 
@@ -13,9 +13,9 @@
    <div class="col-3">
   {{form_row(newvelo.prix)}}
    </div>
-   {# <div class="col">
+   <div class="col">
   {{form_row(newvelo.images)}}
-   </div> #}
+   </div> 
    <div class="col-3">
   {{form_row(newvelo.description)}}
    </div>
@@ -45,4 +45,4 @@
   <input type="submit" class="btn btn-primary mt-2 mb-4" value="Enregistrer"/>
 {{form_end(newvelo)}}
 </div>
-{% endblock %}
+{% endblock %} 
