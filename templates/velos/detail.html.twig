@@ -5,19 +5,6 @@
 
 
 {% block body %}
-       <section class="container-fluid p-4" id="apropos">
-        <div class="row text-center">
-          <div class="col-12 p-2 col-md-7 col-lg-7 col-xl-7"  data-aos="fade-right" data-aos-duration="1800">
-          <img src="{{vich_uploader_asset(velo, 'imageFile')}}" alt="vélo" id="portrait" class="w-100">     
-          </div>
-          <div class="col-12 p-2 col-md-5 col-lg-5 col-xl-5" data-aos="fade-left" data-aos-duration="2000">
-            <h3 class="mt-0">VÉLOCITY</h3>
-            <p>{{velo.model}}</p>
-            <P>{{velo.prix}}€</P>
-            <a href="{{ path ('panier_add', {id: velo.id})}}" class="btn btn-primary mb-0">AJOUTER AU PANIER</a>
-          </div> 
-        </div>
-      </section> 
       <section class="container-fluid p-4" id="apropos">
     <div class="row text-center">
         <div class="col-12 p-2 col-md-7 col-lg-7 col-xl-7" data-aos="fade-right" data-aos-duration="1800">
