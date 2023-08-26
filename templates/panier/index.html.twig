@@ -1,79 +1,73 @@
 {% extends 'base.html.twig' %}
-{% block title %}Hello PanierController!{% endblock %}
-{% block body %}
-<div class="container mt-4 min-content">
- {% if items is empty %}
-<div class="empty-basket-message text-center">
-    <h1>Votre panier est vide !!<h1>
-    <img src="{{ asset('images/velos/paniervide.jpg') }}" alt="Empty Basket">
-    <div class="d-flex justify-content-center">
-        <a href="{{ path('page_gallerie', {id: 1}) }}" class="btn btn-warning mt-0" style="padding: 10px 30px;">Continuez vos achats</a>
-    </div> 
-</div>
-{% else %} 
-<h1>Vos Achats</h1>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th scope="col">Vélo</th>
-                    <th scope="col" class="d-none d-md-table-cell">Model</th>
-                    <th scope="col">Prix</th>
-                    <th scope="col" class="d-none d-xl-table-cell">Quantité</th>
-                    <th scope="col" class="d-none d-sm-table-cell">Total</th> <!-- Remove on small screens -->
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for item in items %}
-                <tr>
-                    <th scope="row">
-                        <img src="{{ vich_uploader_asset(item.velos, 'imageFile') }}" class="card-img-top mt-1"
-                            style="width: 10rem; height: auto;">
-                    </th>
-                    <td class="d-none d-md-table-cell">{{ item.velos.model }}</td>
-                    <td>{{ item.velos.prix }}€</td>
-                    <td class="d-none d-xl-table-cell">
-                        {{ item.quantite }}
-                        <a href="{{ path("ajouter_panier", {id: item.velos.id}) }}" class="btn btn-warning"
-                            target="_self">+</a>
-                        <a href="{{ path('enlever_panier', {id: item.velos.id}) }}" class="btn btn-danger">-</a>
-                    </td>
-                    <td class="d-none d-sm-table-cell">{{ item.velos.prix * item.quantite }}€</td> <!-- Remove on small screens -->
-                    <td>
-                        <a class="btn btn-danger flex-shrink-0"
-                            onclick="return confirm('Supprimer cet élément du panier ?');"
-                            href="{{ path('panier_delete', {id: item.velos.id}) }}">
-                            <i class="fas fa-trash-alt me-1"></i>
-                        </a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div> 
-    <div class="text-center mt-3">
-    <a href="{{ path('page_gallerie', {id: 1})}}" class="btn btn-warning px-4 mb-2"> Continuez vos achats</a> 
-        <form action="/checkout" method="POST">
-            <button type="submit" class="btn btn-primary mb-5 px-4">Total à payer <strong>{{ total }}€</strong></button>
-        </form>
-    </div>
-<div class="d-none d-sm-flex justify-content-center">
-    <img src="{{ asset('images/velos/paiementsecurise.jpg') }}" alt="Payment Security">
-</div>
-<div class="d-flex justify-content-center d-sm-none">
-    <img src="{{ asset('images/velos/paiementsecurise1.jpg') }}" alt="Payment Security 1">
-</div>
 
-
-    {% endif %} 
-
-
-</div>
+{% block title %}
+  Hello PanierController!
 {% endblock %}
 
-
-
-
-
-
+{% block body %}
+<div class="container mt-4 min-content">
+  {% if items is empty %}
+    <div class="empty-basket-message text-center">
+      <h1>Votre panier est vide !</h1>
+      <img src="{{ asset('images/velos/paniervide.jpg') }}" alt="Empty Basket">
+      <div class="d-flex justify-content-center">
+        <a href="{{ path('page_gallerie', {id: 1}) }}" class="btn btn-warning mt-0" style="padding: 10px 30px;">Continuez vos achats</a>
+      </div> 
+    </div>
+  {% else %}
+    <h1>Vos Achats</h1>
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Vélo</th>
+            <th scope="col" class="d-none d-md-table-cell">Model</th>
+            <th scope="col">Prix</th>
+            <th scope="col" class="d-none d-xl-table-cell">Quantité</th>
+            <th scope="col" class="d-none d-sm-table-cell">Total</th> <!-- Remove on small screens -->
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <th scope="row">
+                <img src="{{ vich_uploader_asset(item.velos, 'imageFile') }}" class="card-img-top mt-1"
+                  style="width: 10rem; height: auto;">
+              </th>
+              <td class="d-none d-md-table-cell">{{ item.velos.model }}</td>
+              <td>{{ item.velos.prix }}€</td>
+              <td class="d-none d-xl-table-cell">
+                {{ item.quantite }}
+                <a href="{{ path("ajouter_panier", {id: item.velos.id}) }}" class="btn btn-warning"
+                  target="_self">+</a>
+                <a href="{{ path('enlever_panier', {id: item.velos.id}) }}" class="btn btn-danger">-</a>
+              </td>
+              <td class="d-none d-sm-table-cell">{{ item.velos.prix * item.quantite }}€</td> <!-- Remove on small screens -->
+              <td>
+                <a class="btn btn-danger flex-shrink-0"
+                  onclick="return confirm('Supprimer cet élément du panier ?');"
+                  href="{{ path('panier_delete', {id: item.velos.id}) }}">
+                  <i class="fas fa-trash-alt me-1"></i>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div> 
+    <div class="text-center mt-3">
+      <a href="{{ path('page_gallerie', {id: 1})}}" class="btn btn-warning px-4 mb-2">Continuez vos achats</a> 
+      <form action="/checkout" method="POST">
+        <button type="submit" class="btn btn-primary mb-5 px-4">Total à payer <strong>{{ total }}€</strong></button>
+      </form>
+    </div>
+    <div class="d-none d-sm-flex justify-content-center">
+      <img src="{{ asset('images/velos/paiementsecurise.jpg') }}" alt="Paiement sécurisé">
+    </div>
+    <div class="d-flex justify-content-center d-sm-none">
+      <img src="{{ asset('images/velos/paiementsecurise1.jpg') }}" alt="Paiement sécurisé">
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
