@@ -27,6 +27,9 @@
           <div class="mb-3">
             {{ form_row(form.message, {'label': 'Comment pouvons-nous vous aider ? :'}) }}
           </div>
+          <div class="mb-3">
+           {# {{ form_row(form.captcha,{'label':'Veuillez saisir le code CAPTCHA : ' , 'width':200, 'height':50}) }}
+          </div> #}
           <input type="submit" class="btn btn-primary d-block mx-auto rounded-pill btn-lg" value="Envoyer">
           {{ form_end(form) }}
         </div>
