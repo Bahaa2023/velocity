@@ -5,18 +5,30 @@
 {% endblock %}
 
 {% block body %}
-  {% for flash_error in app.flashes('reset_password_error') %}
-    <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
-  {% endfor %}
-  <h1>Réinitialiser votre mot de passe</h1>
+<main style="background-color: #FFFFFF;">
+    <div class="container py-3">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+         {% for flash_error in app.flashes('reset_password_error') %}
+      <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    <h1 class="mb-5 mt-4">Réinitialiser votre mot de passe</h1>
 
-  {{ form_start(requestForm) }}
-    {{ form_row(requestForm.email) }}
-    <div>
-      <small>
-        Veuillez saisir votre adresse e-mail, et nous vous enverrons un lien pour réinitialiser votre mot de passe.
-      </small>
+    {{ form_start(requestForm) }}
+      <div> <!-- Adjust the max-width as needed -->
+        {{ form_row(requestForm.email) }}
+      </div>
+      <div>
+        <p>
+          Veuillez saisir votre e-mail pour réinitialiser votre mot de passe.
+        </p>
+      </div>
+      <button class="btn btn-primary d-block mx-auto rounded-pill btn-lg mb-5 mt-5">Envoyer</button>
+    {{ form_end(requestForm) }}
+     </div>
+      </div>
     </div>
-    <button class="btn btn-primary">Envoyer</button>
-  {{ form_end(requestForm) }}
-{% endblock %}
+  </main>
+{% endblock %} 
+
+
