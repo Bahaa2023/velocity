@@ -114,6 +114,7 @@ main h2,h1 {
 
 }
 
+
 #app-container {
   min-height: 100%;
   overflow-x: hidden;
@@ -136,3 +137,10 @@ main h2,h1 {
 
 
 
+
+h3 {
+  text-align: center;
+ color:#6a52e1;
+ 
+
+}

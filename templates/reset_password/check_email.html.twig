@@ -5,8 +5,53 @@ Email de réinitialisation de mot de passe envoyé.
 {% endblock %}
 
 {% block body %}
-    <p>  Si un compte correspondant à votre adresse e-mail existe, alors un e-mail vient d'être envoyé contenant un lien que vous pouvez utiliser pour réinitialiser votre mot de passe.  
-    Ce lien expirera dans {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle',"fr")  }}.
-    </p>
-    <p>Si vous ne recevez pas d'e-mail, veuillez vérifier votre dossier de courrier indésirable (spam). <a href="{{ path('app_forgot_password_request') }}">Réessayer</a>.</p>
-{% endblock %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center"> <!-- Center align only the h3 element -->
+                    <h1 class="mb-3">Vérifier votre e-mail</h1>
+                    </div>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        Cher utilisateur,
+
+                        Nous souhaitons vous informer qu'une demande de réinitialisation de mot de passe a été effectuée pour votre compte associé à l'adresse e-mail que vous avez fournie. Si vous êtes à l'origine de cette demande, nous sommes là pour vous aider à réinitialiser votre mot de passe en toute sécurité.
+                    </p>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        Tout d'abord, nous voulons vous rassurer que votre sécurité en ligne est notre priorité absolue. C'est pourquoi nous avons pris des mesures pour garantir que cette procédure soit aussi sécurisée que possible. Nous avons pris des mesures pour vous permettre de réinitialiser votre mot de passe en toute simplicité. Pour ce faire, nous avons généré et envoyé un lien de réinitialisation unique que vous pourrez utiliser. Veuillez noter que ce lien expirera dans
+                        {{ resetToken.expirationMessageKey|trans(resetToken.expirationMessageData, 'ResetPasswordBundle',"fr") }},
+                         ce qui garantit que seules les personnes autorisées auront accès à cette fonctionnalité.
+                    </p>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        Si, après avoir initié la réinitialisation, vous ne recevez pas l'e-mail contenant le lien de réinitialisation dans votre boîte de réception, nous vous recommandons de vérifier votre dossier de courrier indésirable (spam). Parfois, nos filtres de messagerie peuvent rediriger des e-mails légitimes vers ce dossier. Si vous trouvez l'e-mail dans votre dossier de spam, veuillez le marquer comme "non spam" pour vous assurer de recevoir nos communications à l'avenir.
+                    </p>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        En cas de problème ou si vous avez des questions, n'hésitez pas à nous contacter à <a href="mailto:adresse-email@support.com">vélocity@gmail.com</a> ou au <a href="tel:+0125487968">01 25 48 79 68</a>. Notre équipe d'assistance se tient à votre disposition pour vous aider à résoudre tout problème lié à votre compte.
+                    </p>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        Nous vous remercions de votre confiance et de votre compréhension dans cette démarche de sécurité. Votre sécurité en ligne est essentielle pour nous, et nous sommes là pour vous soutenir à chaque étape du processus de réinitialisation de mot de passe.
+                    </p>
+                    <p class="card-text text-muted mb-4"> <!-- Change text color to muted -->
+                        Cordialement,
+                        <br>
+                       L'équipe du service clientèle de Velocity
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %} 
+
+
+
+
+
+
+
