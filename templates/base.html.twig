@@ -1,7 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,12 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/>
-     <link rel="stylesheet" href="{{ asset('sitevelo.css') }}"> 
- </head>
-
-
-
-
+    <link rel="stylesheet" href="{{ asset('sitevelo.css') }}"> 
+</head>
 <body>
 <div id="app-container">
   <header>
@@ -43,7 +38,6 @@
                 </span>
                 {% endif %}
               </a>
-             
             </li>
             <li class="nav-item active">
               <a class="nav-link ms-3 my-auto" href="{{ path ('page_accueil')}}">Accueil <span class="sr-only">(current)</span></a>
@@ -61,107 +55,84 @@
             <li class="nav-item ms-3">
               <a class="nav-link my-auto text-lg-center" href="{{ path ('page_quisommesnous')}}">Qui sommes nous?</a>
             </li>
-          
             {% if not is_granted('ROLE_USER') %}
             <li class="nav-item ms-3 d-lg-none">
             <a class="nav-link" href="{{ path('page_connexion') }}">Connexion</a>
             </li>
             {% endif %}
-
             {% if is_granted('ROLE_USER') %}
-                <li class="nav-item ms-3 d-lg-none">
-                    <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
-                </li>
-            {% endif %}
-
-
-
-
-
-                      {% if app.user %}
-                      <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
-                      <a class="nav-link"  href="{{ path ('app_logout')}}">
-                       <i class="fa-sharp fa-solid fa-power-off fa-xl"></i>    
-                       </a> 
-                       </li>
-                      {% else %}
-                      <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
-                       <a class="nav-link"  href="{{ path ('page_connexion')}}">
-                       <i class="fa-solid fa-user fa-xl"></i> 
-                       <!--<p>Connexion</p>--> 
-                       </a> 
-                       </li>
-                      {% endif %}
-
-                      {# note the code below is to give the role to admin exclusively to be able to access the velos list and the crown will show after the admin login #}
-                      {% if is_granted ('ROLE_ADMIN') %}
-                      <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
-                      <a class="nav-link"  href="{{ path ('velos_list')}}">
-                       <i class="fa-solid fa-crown fa-xl"></i>   
-                       </a> 
-                       </li>
-                      {% endif %}
-
-
-            <li class="nav-item text-lg-center d-none  ms-1 d-lg-block position-relative">
-              <a class="nav-link position-relative" href="{{ path ('page_panier')}}">
-                <i class="fa-solid fa-cart-shopping fa-xl"></i>
-                <!--<p>Panier</p>-->
-                {% if app.user %}
-                <span class="position-absolute top-0 start-35 translate-middle badge rounded-pill bg-danger badge-topnav">
-                {# {{app.session.get('panier') ? app.session.get('panier')| length :'0'}} #}
-                {% set panier = app.session.get('panier') %}
-                {% set qtePanier = 0 %}
-                {% for quantite in panier %}
-                  {% set qtePanier = qtePanier + quantite %}
-                {% endfor %}
-                {{ qtePanier }}
-                </span>
-                {% endif %}
-              </a>
-              
+            <li class="nav-item ms-3 d-lg-none">
+            <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
             </li>
-          </ul>
-        </div>
+            {% endif %}
+            {% if app.user %}
+            <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
+             <a class="nav-link"  href="{{ path ('app_logout')}}">
+              <i class="fa-sharp fa-solid fa-power-off fa-xl"></i>    
+             </a> 
+            </li>
+            {% else %}
+            <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
+            <a class="nav-link"  href="{{ path ('page_connexion')}}">
+            <i class="fa-solid fa-user fa-xl"></i> 
+            </a> 
+            </li>
+            {% endif %}
+            {% if is_granted ('ROLE_ADMIN') %}
+            <li class="nav-item text-lg-center d-none ms-1 d-lg-block">
+            <a class="nav-link"  href="{{ path ('velos_list')}}">
+            <i class="fa-solid fa-crown fa-xl"></i>   
+            </a> 
+            </li>
+            {% endif %}
+            <li class="nav-item text-lg-center d-none  ms-1 d-lg-block position-relative">
+            <a class="nav-link position-relative" href="{{ path ('page_panier')}}">
+              <i class="fa-solid fa-cart-shopping fa-xl"></i>
+              {% if app.user %}
+              <span class="position-absolute top-0 start-35 translate-middle badge rounded-pill bg-danger badge-topnav">
+              {# {{app.session.get('panier') ? app.session.get('panier')| length :'0'}} #}
+              {% set panier = app.session.get('panier') %}
+              {% set qtePanier = 0 %}
+              {% for quantite in panier %}
+              {% set qtePanier = qtePanier + quantite %}
+              {% endfor %}
+              {{ qtePanier }}
+              </span>
+              {% endif %}
+            </a>
+          </li>
+        </ul>
       </div>
-    </nav>
-  </header> 
-   {% block body %}{% endblock %}
-   <footer class="text-center text-lg-start text-white" style="background-color: #929fba">
-        <div class="container p-4 pb-0">
-          <section>
-            <div class="row">
-              <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-               <a class="nav-link text-white mb-1" href="{{ path('page_accueil') }}">Accueil</a>
-                <a class="nav-link text-white" href="{{ path('page_contact') }}">Contact</a>
-              </div>
-              <hr class="w-100 clearfix d-md-none" />
-              <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
-                <p><i class="fas fa-home mr-3"></i> 47 Av. de Versailles, 75016 Paris</p>
-                <p><i class="fas fa-envelope mr-3"></i> vélocity@gmail.com</p>
-                <p><i class="fas fa-phone mr-3"></i> 01 25 48 79 68</p>    
-              </div>
-              <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-                <h6 class="text-uppercase mb-4 font-weight-bold">Suivez-nous</h6>
-                <a class="btn btn-primary btn-floating" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
-                <a class="btn btn-primary btn-floating" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
-                <a class="btn btn-primary btn-floating" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>  
-              </div>
-            </div>   
-          </section>
+    </div>
+  </nav>
+</header> 
+{% block body %}{% endblock %}
+<footer class="text-center text-lg-start text-white" style="background-color: #929fba">
+  <div class="container p-4 pb-0">
+    <section>
+      <div class="row">
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+         <a class="nav-link text-white mb-1" href="{{ path('page_accueil') }}">Accueil</a>
+          <a class="nav-link text-white" href="{{ path('page_contact') }}">Contact</a>
         </div>
-  </footer>
-
-
-
-
-
-
+        <hr class="w-100 clearfix d-md-none" />
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+          <p><i class="fas fa-home mr-3"></i> 47 Av. de Versailles, 75016 Paris</p>
+          <p><i class="fas fa-envelope mr-3"></i> vélocity@gmail.com</p>
+          <p><i class="fas fa-phone mr-3"></i> 01 25 48 79 68</p>    
+        </div>
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+          <h6 class="text-uppercase mb-4 font-weight-bold">Suivez-nous</h6>
+          <a class="btn btn-primary btn-floating" style="background-color: #3b5998" href="#!" role="button"><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-primary btn-floating" style="background-color: #55acee" href="#!" role="button"><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-primary btn-floating" style="background-color: #ac2bac" href="#!" role="button"><i class="fab fa-instagram"></i></a>  
+        </div>
+      </div>   
+    </section>
   </div>
-  
-          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-      {% block javascripts %}{% endblock %}       
+</footer>
+</div> 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+{% block javascripts %}{% endblock %}       
 </body>
 </html>
-
-

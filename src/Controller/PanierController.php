@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class PanierController extends AbstractController
 {
     /**
@@ -39,19 +40,17 @@ class PanierController extends AbstractController
             $total += $item['velos']->getPrix() * $item['quantite'];
         }
 
-
         $totalQuantity = 0;
         foreach ($panierData as $item) {
             $totalQuantity += $item['quantite'];
         }
-        // dd($panierData);
+
         return $this->render('panier/index.html.twig', [
             "items" => $panierData,
             "total" => $total,
             "totalQuantity" => $totalQuantity,
         ]);
     }
-
 
     /**
      * @Route("/panier/add/{id}", name="panier_add")
@@ -60,7 +59,6 @@ class PanierController extends AbstractController
     {
         $panier = $session->get('panier', []);
 
-
         if (!empty($panier[$id])) {
             $panier[$id]++;
         } else {
@@ -68,10 +66,6 @@ class PanierController extends AbstractController
         }
 
         $session->set('panier', $panier);
-        // $panier = $session->get('panier', []);
-        // dd($panier);
-        // dd($session->get('panier', []));  
-        // this code above is like vardump we can decomment it to see what we have
 
         return $this->redirectToRoute('page_panier');
     }
@@ -81,42 +75,35 @@ class PanierController extends AbstractController
      */
     public function delete($id, SessionInterface $session)
     {
-        #On récupere la session 'panier' si elle existe - sinon elle est créée avec un tableau vide
         $panier = $session->get('panier', []);
 
-        #On supprime de la session celui dont on a passé l'id
         if (!empty($panier[$id])) {
             $panier[$id]--;
 
             if ($panier[$id] <= 0) {
-                unset($panier[$id]); //unset pour dépiler de la session
+                unset($panier[$id]); //unset for removing from the session
             }
         }
 
-        #On réaffecte le nouveau panier à la session
         $session->set('panier', $panier);
 
-        #On redirige vers le panier
         return $this->redirectToRoute('page_panier');
     }
-
 
     /**
      * @Route("/panier/clear", name="panier_clear")
      */
     public function clearCart(SessionInterface $session)
     {
-
         $session->remove('panier');
 
-        #On redirige vers le panier
         return $this->redirectToRoute('page_panier');
     }
 
     /**
      * @Route("/panier/ajouter/{id}", name="ajouter_panier")
      */
-    public function ajouter(int $id,  SessionInterface $session): RedirectResponse
+    public function ajouter(int $id, SessionInterface $session): RedirectResponse
     {
         $panier = $session->get('panier', []);
 
@@ -124,19 +111,22 @@ class PanierController extends AbstractController
             $panier[$id]++;
         }
         $session->set('panier', $panier);
+
         return $this->redirectToRoute('page_panier');
     }
 
     /**
      * @Route("/panier/enlever/{id}", name="enlever_panier")
      */
-    public function enlever(int $id,  SessionInterface $session)
+    public function enlever(int $id, SessionInterface $session)
     {
         $panier = $session->get('panier', []);
+
         if (!empty($panier[$id]) && $panier[$id] > 0) {
             $panier[$id]--;
         }
         $session->set('panier', $panier);
+
         return $this->redirectToRoute('page_panier');
     }
 }

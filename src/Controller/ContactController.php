@@ -24,6 +24,7 @@ class ContactController extends AbstractController
         $contact = new Contact;
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $doctrine->getManager();
             $entityManager->persist($contact);
@@ -37,8 +38,7 @@ class ContactController extends AbstractController
                     "contact" => $contact
                 ]);
             $mailer->send($email);
-            $this->addFlash('contact_success', "Le mail a bien été envoyer, on revient vers vous dans le plus brief delai !");
-            // note: below the code ( return $this->redirectToRoute('page_contact');) we can décomment it incase i dont need the formulaire de contact to empty after sending the message.
+            $this->addFlash('contact_success', "Votre mail a bien été envoyé, on revient vers vous dans le plus bref délai !");
             return $this->redirectToRoute('page_contact');
         }
         return $this->render('contact/index.html.twig', [

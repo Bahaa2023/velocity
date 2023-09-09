@@ -5,9 +5,10 @@
 {% endblock %}
 
 {% block body %}
+
   {% for message in app.flashes('contact_success') %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-      <strong>Félicitation</strong> {{ message }}
+      {{ message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   {% endfor %}
@@ -37,3 +38,4 @@
     </div>
   </main>
 {% endblock %} 
+
